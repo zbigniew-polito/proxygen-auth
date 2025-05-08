@@ -29,3 +29,6 @@ _build/
 # Generated document
 html/
 latex/
+
+
+vcpkg/
