@@ -1,1 +1,0 @@
-vcpkg-overlay-ports/folly/portfile.cmake
