@@ -245,14 +245,25 @@ if (BUILD_SHARED_LIBS)
     endif()
 endif()
 
+find_package(Folly CONFIG REQUIRED)
+find_package(fizz CONFIG REQUIRED)
+find_package(wangle CONFIG REQUIRED)
+find_package(zstd CONFIG REQUIRED)
+#find_package(Boost CONFIG REQUIRED)
+find_package(boost REQUIRED COMPONENTS filesystem)
+#find_package(boost CONFIG REQUIRED COMPONENTS iostreams)
+find_package(Boost CONFIG REQUIRED COMPONENTS config-config)
+#find_package(boost CONFIG REQUIRED COMPONENTS filesystem)
+
 target_link_libraries(
     proxygen PUBLIC
     Folly::folly
     fizz::fizz
     wangle::wangle
     zstd
-    Boost::boost
-    Boost::iostreams
+    #Boost::boost
+    #Boost::iostreams
+    #Boost::config
     -lz
     ${HTTP3_DEPEND_LIBS}
 )
@@ -288,16 +299,18 @@ install(
     ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
 )
 
-add_subdirectory(test)
-add_subdirectory(http/test)
-add_subdirectory(http/structuredheaders/test)
-add_subdirectory(http/connpool/test)
-add_subdirectory(http/codec/test)
-add_subdirectory(http/codec/compress/test)
-add_subdirectory(http/session/test)
-add_subdirectory(http/webtransport)
-add_subdirectory(http/webtransport/test)
-add_subdirectory(sampling/test)
-add_subdirectory(services/test)
-add_subdirectory(transport/test)
-add_subdirectory(utils/test)
+if(BUILD_TESTS)
+	add_subdirectory(test)
+	add_subdirectory(http/test)
+	add_subdirectory(http/structuredheaders/test)
+	add_subdirectory(http/connpool/test)
+	add_subdirectory(http/codec/test)
+	add_subdirectory(http/codec/compress/test)
+	add_subdirectory(http/session/test)
+	add_subdirectory(http/webtransport)
+	add_subdirectory(http/webtransport/test)
+	add_subdirectory(sampling/test)
+	add_subdirectory(services/test)
+	add_subdirectory(transport/test)
+	add_subdirectory(utils/test)
+endif()
