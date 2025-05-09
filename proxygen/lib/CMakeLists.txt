@@ -4,6 +4,7 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 
+
 file(
     MAKE_DIRECTORY
     ${PROXYGEN_GENERATED_ROOT}/proxygen/lib/http
@@ -25,6 +26,7 @@ add_custom_command(
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/perfect_hash_table_template.h
         ${CMAKE_CURRENT_SOURCE_DIR}/utils/perfect_hash_table_template.cpp.gperf
     COMMENT "Generating HTTPCommonHeaders.h and HTTPCommonHeaders.cpp"
+    #WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/http
 )
 
 add_custom_command(
@@ -245,15 +247,35 @@ if (BUILD_SHARED_LIBS)
     endif()
 endif()
 
+find_package(Boost CONFIG REQUIRED COMPONENTS filesystem)
+find_package(boost CONFIG REQUIRED COMPONENTS config)
 find_package(Folly CONFIG REQUIRED)
 find_package(fizz CONFIG REQUIRED)
 find_package(wangle CONFIG REQUIRED)
 find_package(zstd CONFIG REQUIRED)
-#find_package(Boost CONFIG REQUIRED)
-find_package(boost REQUIRED COMPONENTS filesystem)
-#find_package(boost CONFIG REQUIRED COMPONENTS iostreams)
-find_package(Boost CONFIG REQUIRED COMPONENTS config-config)
-#find_package(boost CONFIG REQUIRED COMPONENTS filesystem)
+find_package(mvfst CONFIG REQUIRED)
+find_package(mvfst CONFIG REQUIRED COMPONENTS mvfst_transport)
+
+if (TARGET Boost::filesystem)
+    # Check if the target already exists to avoid errors if run multiple times
+    message(STATUS "TARGET Boost::filesystem EXISTS")
+    
+    if (NOT TARGET boost::filesystem)
+        add_library(boost::filesystem ALIAS Boost::filesystem)
+        message(STATUS "Created alias target boost::filesystem for Boost::filesystem")
+    else()
+        message(STATUS "Alias target boost::filesystem already exists.")
+    endif()
+else()
+    message(WARNING "Boost::filesystem target not found. Cannot create alias boost::filesystem.")
+endif()
+if (TARGET boost::filesystem)
+    # Check if the target already exists to avoid errors if run multiple times
+    message(STATUS "TARGET boost::filesystem EXISTS")
+else()
+    message(WARNING "voost::filesystem target not found.")
+endif()
+
 
 target_link_libraries(
     proxygen PUBLIC
@@ -261,9 +283,10 @@ target_link_libraries(
     fizz::fizz
     wangle::wangle
     zstd
-    #Boost::boost
-    #Boost::iostreams
-    #Boost::config
+    Boost::filesystem
+    Boost::boost
+    Boost::iostreams
+    Boost::config
     -lz
     ${HTTP3_DEPEND_LIBS}
 )

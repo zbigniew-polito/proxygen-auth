@@ -22,6 +22,12 @@ if [ "x$4" != "x" ]; then
   GPERF="$4"
 fi
 
+declare -p ENUM_FILE_LIST
+declare -p FBCODE_DIR
+echo "$@"
+#declare -p OUTPUT_DIR
+#declare -p GPERF
+
 # The `awk` scripts aren't nearly as hairy as it seems. The only real trick is
 # the first line. We're processing two files -- the result of a `cat` pipeline
 # above, plus a template. The "NR == FNR" compares the current file's

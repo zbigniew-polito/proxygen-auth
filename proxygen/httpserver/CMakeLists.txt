@@ -3,7 +3,6 @@
 #
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
-
 add_library(
     proxygenhttpserver
     RequestHandlerAdaptor.cpp
@@ -21,6 +20,27 @@ if (BUILD_SHARED_LIBS)
     if (DEFINED PACKAGE_VERSION)
         set_target_properties(proxygenhttpserver PROPERTIES VERSION ${PACKAGE_VERSION})
     endif()
+endif()
+
+find_package(Boost CONFIG REQUIRED COMPONENTS filesystem)
+if (TARGET Boost::filesystem)
+    # Check if the target already exists to avoid errors if run multiple times
+    
+    message(STATUS "TARGET Boost::filesystem EXISTS")
+    if (NOT TARGET boost::filesystem)
+        add_library(boost::filesystem ALIAS Boost::filesystem)
+        message(STATUS "Created alias target boost::filesystem for Boost::filesystem")
+    else()
+        message(STATUS "Alias target boost::filesystem already exists.")
+    endif()
+else()
+    message(WARNING "Boost::filesystem target not found. Cannot create alias boost::filesystem.")
+endif()
+
+if(TARGET boost::filesystem)
+    message(STATUS "TARGET boost::filesystem EXISTS")
+else()
+	message(STATUS "TARGET boost::filesystem NOT EXISTS")
 endif()
 
 target_link_libraries(

@@ -13,7 +13,6 @@
 # limitations under the License.
 
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-
 # We use the GoogleTest module if it is available (only in CMake 3.9+)
 # It requires CMP0054 and CMP0057 to be enabled.
 if (POLICY CMP0054)
@@ -119,8 +118,6 @@ endif()
 
 # Disable x86-specific checks for aarch64 and set cross-compilation flags
 if(VCPKG_TARGET_ARCHITECTURE MATCHES "aarch64") # Use VCPKG_TARGET_ARCHITECTURE
-	message(STATUS "EDIT Configuring for aarch64 architecture: ${CMAKE_SYSTEM_PROCESSOR}")
-  
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__ARM_ARCH_64__" CACHE STRING "" FORCE) # Define aarch64
   set(BUILD_SSE42 FALSE CACHE BOOL "" FORCE)
   set(COMPILER_HAS_M_PCLMUL FALSE CACHE BOOL "" FORCE)
@@ -137,8 +134,6 @@ if(VCPKG_TARGET_ARCHITECTURE MATCHES "aarch64") # Use VCPKG_TARGET_ARCHITECTURE
   set(FOLLY_HAVE_LINUX_VDSO_EXITCODE 0 CACHE STRING "" FORCE)
   set(FOLLY_HAVE_WCHAR_SUPPORT_EXITCODE 0 CACHE STRING "" FORCE)
   set(HAVE_VSNPRINTF_ERRORS_EXITCODE 0 CACHE STRING "" FORCE)
-else()
-	message(STATUS "EDIT Configuring for non aarch64 architecture: '${CMAKE_SYSTEM_PROCESSOR}'  '${VCPKG_TARGET_ARCHITECTURE}'")
 endif()
 
 #Fix vsnprintf error

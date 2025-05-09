@@ -19,7 +19,7 @@ echo "Running CMake configuration..."
 # Use the VCPKG toolchain file
 # Explicitly set compilers as a fallback in case VCPKG doesn't do it correctly
 # NOTE: Ensure there are NO spaces or other characters after the backslashes '\'!
-cmake ../proxygen \
+cmake .. \
   -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake \
   -DVCPKG_TARGET_TRIPLET=aarch64-linux \
   -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \

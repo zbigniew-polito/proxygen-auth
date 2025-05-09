@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 3.18)  # Or a suitable minimum version
 project(proxygen)
-
+#set(PROXYGEN_FBCODE_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 include(../cmake/ProxygenTest.cmake)
 
 if (NOT DEFINED LIB_INSTALL_DIR)
