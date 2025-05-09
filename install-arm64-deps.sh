@@ -3,6 +3,3 @@ sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu binutils-aarch64-li
 sudo dpkg --add-architecture arm64
 apt update
 sudo apt install libc6-dev:arm64 libstdc++6:arm64 zlib1g-dev:arm64
-
-
-mkdir build-aarch64
