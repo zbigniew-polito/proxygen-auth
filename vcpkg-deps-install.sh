@@ -2,19 +2,20 @@
 #
 cd vcpkg;
 
-ARCH=:aarch64-linux-gnu
+ARCH=aarch64-rpi4b-linux-gnu
 OPTS=( --overlay-triplets=../overlays \
+       --triplet $ARCH \
        --overlay-ports=../overlays \
-       --allow-unsupported --recurse \
-       --triplet aarch64-linux-gnu --recurse )
+       --allow-unsupported --recurse )
 
 
 LIBS=( libevent gflags glog double-conversion \
        libevent zlib openssl folly fizz wangle \
-       mvst gperf boost-context boost-filesystem \
+       mvfst gperf boost-context boost-filesystem \
        boost-iostreams boost-config boost ) 
 
 for lib in ${LIBS[@]};
 do
 	./vcpkg ${OPTS[@]} install $lib
+#	exit
 done

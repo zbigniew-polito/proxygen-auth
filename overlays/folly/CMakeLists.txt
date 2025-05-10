@@ -118,7 +118,8 @@ if (NOT DEFINED IS_AARCH64_ARCH)
 endif()
 
 # Disable x86-specific checks for aarch64 and set cross-compilation flags
-if(VCPKG_TARGET_ARCHITECTURE MATCHES "aarch64-linux-gnu") # Use VCPKG_TARGET_ARCHITECTURE
+if("${VCPKG_TARGET_ARCHITECTURE}" MATCHES "^aarch64")
+	#if(VCPKG_TARGET_ARCHITECTURE MATCHES "aarch64-linux-gnu") # Use VCPKG_TARGET_ARCHITECTURE
 	message(STATUS "EDIT Configuring for aarch64 architecture: ${CMAKE_SYSTEM_PROCESSOR}")
   
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__ARM_ARCH_64__" CACHE STRING "" FORCE) # Define aarch64
