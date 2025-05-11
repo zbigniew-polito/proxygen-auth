@@ -1,0 +1,28 @@
+lib/CMakeFiles/proxygen.dir/http/StatusTypeEnum.cpp.o: \
+ /home/zpo/dev/proxygen-auth/proxygen/lib/http/StatusTypeEnum.cpp \
+ /usr/aarch64-linux-gnu/include/stdc-predef.h \
+ /home/zpo/dev/proxygen-auth/proxygen/lib/http/StatusTypeEnum.h \
+ /usr/aarch64-linux-gnu/include/c++/12/exception \
+ /usr/aarch64-linux-gnu/include/c++/12/aarch64-linux-gnu/bits/c++config.h \
+ /usr/aarch64-linux-gnu/include/c++/12/aarch64-linux-gnu/bits/os_defines.h \
+ /usr/aarch64-linux-gnu/include/features.h \
+ /usr/aarch64-linux-gnu/include/features-time64.h \
+ /usr/aarch64-linux-gnu/include/bits/wordsize.h \
+ /usr/aarch64-linux-gnu/include/bits/timesize.h \
+ /usr/aarch64-linux-gnu/include/sys/cdefs.h \
+ /usr/aarch64-linux-gnu/include/bits/long-double.h \
+ /usr/aarch64-linux-gnu/include/gnu/stubs.h \
+ /usr/aarch64-linux-gnu/include/gnu/stubs-lp64.h \
+ /usr/aarch64-linux-gnu/include/c++/12/aarch64-linux-gnu/bits/cpu_defines.h \
+ /usr/aarch64-linux-gnu/include/c++/12/pstl/pstl_config.h \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/exception.h \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/exception_ptr.h \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/exception_defines.h \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/cxxabi_init_exception.h \
+ /usr/lib/gcc-cross/aarch64-linux-gnu/12/include/stddef.h \
+ /usr/aarch64-linux-gnu/include/c++/12/typeinfo \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/hash_bytes.h \
+ /usr/aarch64-linux-gnu/include/c++/12/new \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/move.h \
+ /usr/aarch64-linux-gnu/include/c++/12/type_traits \
+ /usr/aarch64-linux-gnu/include/c++/12/bits/nested_exception.h

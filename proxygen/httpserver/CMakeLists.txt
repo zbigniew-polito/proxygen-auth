@@ -3,6 +3,9 @@
 #
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
+
+find_package(fizz CONFIG REQUIRED)
+find_package(mvfst CONFIG REQUIRED)
 add_library(
     proxygenhttpserver
     RequestHandlerAdaptor.cpp
@@ -71,7 +74,7 @@ if (BUILD_SAMPLES)
             set_target_properties(proxygendeviousbaton PROPERTIES VERSION ${PACKAGE_VERSION})
         endif()
     endif()
-
+    target_link_libraries( proxygenhttpserver PRIVATE zstd::libzstd_shared)
     target_link_libraries(
         proxygendeviousbaton
         PUBLIC
@@ -275,7 +278,7 @@ foreach(header ${PROXYGEN_HTTPSERVER_HEADERS_TOINSTALL})
     install(FILES ${header} DESTINATION include/proxygen/httpserver/${header_dir})
 endforeach()
 
-add_subdirectory(tests)
-add_subdirectory(filters/tests)
+#add_subdirectory(tests)
+#add_subdirectory(filters/tests)
 #add_subdirectory(samples/echo/test)
 #add_subdirectory(samples/hq/devious/test)

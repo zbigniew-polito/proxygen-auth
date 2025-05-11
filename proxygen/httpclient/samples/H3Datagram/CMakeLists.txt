@@ -3,7 +3,7 @@
 #
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
-
+#find_package(boost CONFIG REQUIRED COMPONENTS filesystem)
 add_executable(proxygen_h3datagram_client H3DatagramClient.cpp)
 target_compile_options(
     proxygen_h3datagram_client PRIVATE

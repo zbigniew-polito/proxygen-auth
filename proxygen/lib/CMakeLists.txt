@@ -3,7 +3,7 @@
 #
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
-
+message(STATUS "PROXYGEN_GENERATED_ROOT: '${PROXYGEN_GENERATED_ROOT}'")
 
 file(
     MAKE_DIRECTORY
@@ -248,7 +248,7 @@ if (BUILD_SHARED_LIBS)
 endif()
 
 find_package(Boost CONFIG REQUIRED COMPONENTS filesystem)
-find_package(boost CONFIG REQUIRED COMPONENTS config)
+find_package(Boost CONFIG REQUIRED COMPONENTS config)
 find_package(Folly CONFIG REQUIRED)
 find_package(fizz CONFIG REQUIRED)
 find_package(wangle CONFIG REQUIRED)

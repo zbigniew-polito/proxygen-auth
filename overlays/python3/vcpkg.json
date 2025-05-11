@@ -39,7 +39,8 @@
       "host": true,
       "platform": "windows"
     },
-    "zlib"
+    "zlib",
+    "ncurses"
   ],
   "default-features": [
     {

@@ -273,10 +273,25 @@ else()
     # https://docs.python.org/3/using/configure.html#cross-compiling-options
     if(VCPKG_CROSSCOMPILING)
         set(_python_for_build "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
-        list(APPEND OPTIONS "--with-build-python=${_python_for_build}")
+        execute_process(
+        	COMMAND "${SOURCE_PATH}/config.guess"
+        	WORKING_DIRECTORY "${SOURCE_PATH}"
+        	OUTPUT_VARIABLE DETECTED_BUILD_TUPLE  # Capture stdout into this variable
+        	OUTPUT_STRIP_TRAILING_WHITESPACE      # Remove any trailing newline/whitespace
+        	ERROR_QUIET                           # Suppress stderr output from config.guess
+    	)
+	
+	list(APPEND OPTIONS "--with-build-python=${_python_for_build}")
 	list(APPEND OPTIONS "--host=${TARGET_TRIPLET}")
-	list(APPEND OPTIONS "--build=${PYTHON_BUILD_NAME}")
+	list(APPEND OPTIONS "--build=${DETECTED_BUILD_TUPLE}")
+		list(APPEND OPTIONS "--disable-ipv6")
+	list(APPEND OPTIONS "--site=${CMAKE_CURRENT_LIST_DIR}/config.site-${CMAKE_SYSTEM_PROCESSOR}")	
+	set(ENV{CONFIG_SITE} "${CMAKE_CURRENT_LIST_DIR}/config.site-${VCPKG_CMAKE_SYSTEM_PROCESSOR}")
+
     endif()
+
+
+
 
     vcpkg_configure_make(
         SOURCE_PATH "${SOURCE_PATH}"
@@ -288,9 +303,9 @@ else()
             "vcpkg_rpath=${CURRENT_INSTALLED_DIR}/debug/lib"
         OPTIONS_RELEASE
             "vcpkg_rpath=${CURRENT_INSTALLED_DIR}/lib"
-	CONFIGURE_OPTIONS
-	    "--build=${PYTHON_BUILD_NAME}"
-	    "--host=${TARGET_TRIPLET}"
+	    #CONFIGURE_OPTIONS
+	    #"--build=${PYTHON_BUILD_NAME}"
+	    #"--host=${TARGET_TRIPLET}"
     )
     vcpkg_install_make(ADD_BIN_TO_PATH INSTALL_TARGET altinstall)
 

@@ -3,6 +3,8 @@
 #
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
+find_package(Boost CONFIG REQUIRED COMPONENTS config)
+find_package(Boost CONFIG REQUIRED COMPONENTS filesystem)
 
 add_library(libhttperf2 HTTPerf2.cpp Client.cpp)
 target_include_directories(

@@ -12,7 +12,8 @@ OPTS=( --overlay-triplets=../overlays \
 LIBS=( libevent gflags glog double-conversion \
        libevent zlib openssl folly fizz wangle \
        mvfst gperf boost-context boost-filesystem \
-       boost-iostreams boost-config boost ) 
+       boost-iostreams boost-config boost boost-regex \
+       zstd gtest ) 
 
 for lib in ${LIBS[@]};
 do
