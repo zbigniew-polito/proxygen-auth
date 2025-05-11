@@ -32,3 +32,5 @@ latex/
 
 
 vcpkg/
+build-*/
+install-*/
