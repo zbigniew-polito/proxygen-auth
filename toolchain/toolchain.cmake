@@ -46,3 +46,7 @@ list(GET ARCH_PARTS 2 _SYSTEM)
 include("${CMAKE_CURRENT_LIST_DIR}/${_CPU}.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/${_MODEL}.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/${_SYSTEM}.cmake")
+
+set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
+set(CMAKE_C_COMPILER_LAUNCHER ccache)
+

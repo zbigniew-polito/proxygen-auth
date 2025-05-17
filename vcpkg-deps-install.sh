@@ -9,14 +9,19 @@ OPTS=( --overlay-triplets=../overlays \
        --allow-unsupported --recurse )
 
 
-LIBS=( libevent gflags glog double-conversion \
-       libevent zlib openssl folly fizz wangle \
-       mvfst gperf boost-context boost-filesystem \
+LIBS=( libevent libaio liburing double-conversion \
+       zlib liblzma zstd bzip2 lz4 snappy \
+       openssl libsodium \
+       gperf gflags glog \
+       gtest \
+       boost-context boost-filesystem \
        boost-iostreams boost-config boost boost-regex \
-       zstd gtest ) 
+       folly[bzip2,libaio,libsodium,liburing,lz4,lzma,snappy,zstd] \
+      # fizz wangle mvfst \
+)
 
 for lib in ${LIBS[@]};
 do
-	./vcpkg ${OPTS[@]} install $lib
+	WITH_ASAN=false ./vcpkg ${OPTS[@]} install $lib
 #	exit
 done
